@@ -26,6 +26,7 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         header {
@@ -170,6 +171,9 @@
             border-radius: 14px;
             padding: 30px;
             transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card:hover {
@@ -186,6 +190,38 @@
         .card p {
             color: var(--text-muted);
             font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            padding-top: 15px;
+        }
+
+        .card-price {
+            font-size: 14px;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .btn-card {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-card:hover {
+            background: var(--gold);
+            color: var(--bg-darker);
         }
 
         .calculator-box {
@@ -239,17 +275,86 @@
             margin-top: 5px;
         }
 
+        /* Стили модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 20, 40, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-content h3 {
+            color: var(--gold);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: var(--bg-darker);
+            color: var(--text-main);
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        .modal-input:focus {
+            border-color: var(--gold);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: var(--text-muted);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            color: var(--gold);
+        }
+
         footer {
             background-color: var(--bg-darker);
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             text-align: center;
-            padding: 30px 5%;
+            padding: 40px 5%;
             color: var(--text-muted);
             font-size: 14px;
         }
 
         footer .disclaimer {
-            margin-top: 10px;
+            margin-top: 15px;
             font-size: 12px;
             opacity: 0.7;
         }
@@ -273,33 +378,88 @@
         </a>
         <nav>
             <a href="#services">Услуги</a>
+            <a href="#cards">Дебетовые карты</a>
             <a href="#calculator">Вклады</a>
-            <a href="#about">О банке</a>
+            <a href="#about">Спонсоры и о банке</a>
         </nav>
-        <button class="btn-gold" onclick="orderCard()">Открыть счёт</button>
+        <button class="btn-gold" onclick="openOrderModal('Универсальный счёт')">Открыть счёт</button>
     </header>
 
     <section class="hero">
-        <div class="hero-badge">Надёжность и традиции с 1999 года</div>
+        <div class="hero-badge">Надёжность и традиция с 1999 года</div>
         <h2>Королевский стандарт управления вашими финансами</h2>
         <p>Премиальное банковское обслуживание, мультивалютные счета и персональные привилегии для тех, кто ценит безопасность и статус.</p>
-        <button class="btn-gold" onclick="orderCard()">Оформить карту Alex Royal</button>
+        <button class="btn-gold" onclick="openOrderModal('Карта Alex Royal')">Оформить карту Alex Royal</button>
     </section>
 
     <section id="services" class="section">
         <h2 class="section-title">Финансовые решения</h2>
         <div class="grid">
             <div class="card">
-                <h3>Карта Alex Royal</h3>
-                <p>Металлическая карта с кешбэком до 15% у партнёров, бесплатным доступом в бизнес-залы аэропортов и круглосуточным консьерж-сервисом.</p>
+                <div>
+                    <h3>Карта Alex Royal</h3>
+                    <p>Металлическая карта с кешбэком до 15% у партнёров, бесплатным доступом в бизнес-залы аэропортов и круглосуточным консьерж-сервисом.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price">Обслуживание: 0 ₽</span>
+                    <button class="btn-card" onclick="openOrderModal('Карта Alex Royal')">Заказать</button>
+                </div>
             </div>
             <div class="card">
-                <h3>Надёжные вклады</h3>
-                <p>Фиксированная доходность до 18% годовых с ежемесячной капитализацией процентов и защитой капитала по стандартам Alex Bank.</p>
+                <div>
+                    <h3>Надёжные вклады</h3>
+                    <p>Фиксированная доходность до 18% годовых с ежемесячной капитализацией процентов и защитой капитала по стандартам Alex Bank.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price">До 18% годовых</span>
+                    <button class="btn-card" onclick="location.href='#calculator'">Рассчитать</button>
+                </div>
             </div>
             <div class="card">
-                <h3>Мультивалютные счета</h3>
-                <p>Мгновенная конвертация валют по биржевому курсу без скрытых комиссий и быстрые переводы в любую точку мира.</p>
+                <div>
+                    <h3>Мультивалютные счета</h3>
+                    <p>Мгновенная конвертация валют по биржевому курсу без скрытых комиссий и быстрые переводы в любую точку мира.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price">0% комиссия</span>
+                    <button class="btn-card" onclick="openOrderModal('Мультивалютный счёт')">Открыть</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cards" class="section">
+        <h2 class="section-title">Выбор дебетовых карт</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <h3>Alex Black Classic</h3>
+                    <p>Классическая дебетовая карта для повседневных трат. Бесплатное обслуживание при покупках от 10 000 ₽ в месяц и кэшбэк 1% на всё.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price">Кэшбэк 1%</span>
+                    <button class="btn-card" onclick="openOrderModal('Alex Black Classic')">Выбрать</button>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <h3>Alex Gold Travel</h3>
+                    <p>Идеальна для путешествий. Повышенный кэшбэк на билеты и отели, страховка для поездок по всему миру и бесплатные проходы в залы ожидания.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price">Кэшбэк до 5%</span>
+                    <button class="btn-card" onclick="openOrderModal('Alex Gold Travel')">Выбрать</button>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <h3>Alex Platinum Junior</h3>
+                    <p>Молодёжная карта для подростков от 14 лет с ярким дизайном, обучающими финансам квестами и специальными бонусами в игровых сервисах.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price">Для молодежи</span>
+                    <button class="btn-card" onclick="openOrderModal('Alex Platinum Junior')">Выбрать</button>
+                </div>
             </div>
         </div>
     </section>
@@ -323,14 +483,30 @@
     </section>
 
     <footer id="about">
+        <p><strong>Партнеры и спонсоры:</strong> Недавно мы официально заключили стратегическое партнерство с авиакомпанией <strong>Samara Airlines</strong>! Теперь клиенты Alex Bank получают эксклюзивные привилегии, мили и скидки на все направления полетов.</p>
+        <br>
         <p>© 1999–2026 ALEX BANK CORPORATION. Все права защищены.</p>
         <p class="disclaimer">Данный сайт является учебным и демонстрационным проектом. Alex Bank не является реальной кредитной организацией и не оказывает финансовые услуги.</p>
     </footer>
 
+    <!-- Модальное окно анкеты -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeOrderModal()">&times;</button>
+            <h3>Оформление заявки</h3>
+            <p id="modalProductTitle">Вы выбрали продукт</p>
+            <input type="text" id="clientName" class="modal-input" placeholder="Введите ваше имя">
+            <input type="tel" id="clientPhone" class="modal-input" placeholder="Номер телефона (+7 ...)">
+            <button class="btn-gold" style="width: 100%;" onclick="submitOrder()">Отправить заявку</button>
+        </div>
+    </div>
+
     <script>
+        let selectedProduct = '';
+
         function calculateDeposit() {
             const amount = parseInt(document.getElementById('amountRange').value);
-            const months = parseInt(document.getElementById('monthsRange'].value);
+            const months = parseInt(document.getElementById('monthsRange').value);
             const rate = 0.18;
 
             const profit = amount * rate * (months / 12);
@@ -341,10 +517,35 @@
             document.getElementById('totalResult').innerText = total.toLocaleString('ru-RU') + ' ₽';
         }
 
-        function orderCard() {
-            const name = prompt('Введите ваше имя для заявки на карту Alex Royal:');
-            if (name && name.trim() !== '') {
-                alert('Спасибо, ' + name + '! Ваша заявка в Alex Bank принята. Персональный менеджер скоро свяжется с вами.');
+        function openOrderModal(productName) {
+            selectedProduct = productName;
+            document.getElementById('modalProductTitle').innerText = 'Заявка на оформление: ' + productName;
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        function submitOrder() {
+            const name = document.getElementById('clientName').value.trim();
+            const phone = document.getElementById('clientPhone').value.trim();
+
+            if (!name) {
+                alert('Пожалуйста, введите ваше имя.');
+                return;
+            }
+
+            alert('Спасибо, ' + name + '! Ваша заявка на продукт "' + selectedProduct + '" успешно принята. Персональный менеджер свяжется с вами в ближайшее время.');
+            closeOrderModal();
+            document.getElementById('clientName').value = '';
+            document.getElementById('clientPhone').value = '';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('orderModal');
+            if (event.target == modal) {
+                closeOrderModal();
             }
         }
     </script>
