@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALEX BANK — Премиальный цифровой банк</title>
+    <title>ALEX BANK — Премиальный банкинг</title>
     <style>
         :root {
-            --bg-dark: #0f1318;
-            --bg-darker: #080a0d;
-            --bg-card: #181d24;
-            --gold: #f1c40f;
-            --gold-hover: #f39c12;
-            --text-main: #ffffff;
-            --text-muted: #8c9bae;
-            --accent-blue: #3498db;
+            --bg-dark: #0a1f3c;
+            --bg-darker: #061428;
+            --bg-card: #102a4e;
+            --gold: #d4af37;
+            --gold-hover: #e5c354;
+            --text-main: #f4f6f9;
+            --text-muted: #9eb3cc;
         }
 
         * {
@@ -32,50 +31,48 @@
 
         header {
             background-color: var(--bg-darker);
-            border-bottom: 1px solid rgba(241, 196, 15, 0.15);
-            padding: 18px 5%;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(10px);
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             text-decoration: none;
         }
 
         .brand-emblem {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border: 2px solid var(--gold);
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gold);
             font-weight: bold;
-            font-size: 18px;
-            background: rgba(241, 196, 15, 0.05);
+            font-size: 20px;
+            background: rgba(212, 175, 55, 0.08);
         }
 
         .brand-text h1 {
             color: var(--gold);
-            font-size: 20px;
-            letter-spacing: 1.5px;
+            font-size: 22px;
+            letter-spacing: 2px;
             line-height: 1.1;
         }
 
         .brand-text span {
             color: var(--text-muted);
-            font-size: 10px;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 3px;
         }
 
         nav {
@@ -84,10 +81,9 @@
         }
 
         nav a {
-            color: var(--text-muted);
+            color: var(--text-main);
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 15px;
             transition: color 0.3s;
         }
 
@@ -99,249 +95,243 @@
             background-color: var(--gold);
             color: var(--bg-darker);
             border: none;
-            padding: 10px 22px;
-            border-radius: 10px;
+            padding: 12px 24px;
+            border-radius: 8px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 15px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
             text-decoration: none;
             display: inline-block;
         }
 
         .btn-gold:hover {
             background-color: var(--gold-hover);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
 
-        .hero {
-            padding: 60px 5% 40px;
-            text-align: center;
-            background: radial-gradient(circle at top, #1c2533 0%, var(--bg-dark) 70%);
-        }
-
-        .hero h2 {
-            font-size: 38px;
-            margin-bottom: 16px;
-            color: #ffffff;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 16px;
-            max-width: 580px;
-            margin: 0 auto 30px;
-        }
-
-        /* Интерактивный конструктор карт (в стиле Т-Банка) */
-        .card-constructor {
-            max-width: 1000px;
-            margin: 20px auto 60px;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 40px;
+        /* Главный экран в стиле Т-Банка */
+        .hero-showcase {
+            padding: 70px 5%;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 50px;
             align-items: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        /* Визуальный макет пластиковой карты */
-        .bank-card-preview {
-            width: 100%;
-            height: 210px;
-            border-radius: 16px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: all 0.5s ease;
-            overflow: hidden;
-        }
-
-        /* Стили дизайнов карт */
-        .card-style-royal {
-            background: linear-gradient(135deg, #1a2530 0%, #0b1015 100%);
-            border: 1px solid rgba(241, 196, 15, 0.4);
-        }
-        .card-style-black {
-            background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .card-style-gold {
-            background: linear-gradient(135deg, #d4af37 0%, #aa771c 100%);
-            color: #000 !important;
-        }
-        .card-style-cyber {
-            background: linear-gradient(135deg, #8e44ad 0%, #2980b9 100%);
-            border: 1px solid rgba(52, 152, 219, 0.5);
-        }
-
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .card-chip {
-            width: 42px;
-            height: 32px;
-            background: linear-gradient(135deg, #d4af37 0%, #f39c12 100%);
-            border-radius: 6px;
-        }
-
-        .card-logo {
-            font-weight: 800;
-            letter-spacing: 1px;
-            font-size: 15px;
-        }
-
-        .card-number {
-            font-family: monospace;
-            font-size: 18px;
-            letter-spacing: 3px;
-            opacity: 0.9;
-        }
-
-        .card-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            font-size: 13px;
-            text-transform: uppercase;
-        }
-
-        /* Настройки выбора в конструкторе */
-        .constructor-options h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
+        .hero-content h2 {
+            font-size: 42px;
             color: #ffffff;
-        }
-
-        .constructor-options p {
-            color: var(--text-muted);
-            font-size: 14px;
             margin-bottom: 20px;
+            line-height: 1.2;
         }
 
-        .design-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .design-btn {
-            background: var(--bg-darker);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-main);
-            padding: 10px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            transition: all 0.2s;
-            text-align: left;
-        }
-
-        .design-btn.active, .design-btn:hover {
-            border-color: var(--gold);
-            background: rgba(241, 196, 15, 0.08);
+        .hero-content h2 span {
             color: var(--gold);
         }
 
+        .hero-content p {
+            color: var(--text-muted);
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .features-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .chip {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Премиальная карта с вашим котом */
+        .card-preview-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .premium-debit-card {
+            width: 360px;
+            height: 220px;
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border: 2px solid var(--gold);
+            /* Картинка кота в качестве фона карты */
+            background-image: url('cat.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(6,20,40,0.25) 0%, rgba(6,20,40,0.8) 100%);
+            z-index: 1;
+        }
+
+        .card-inner {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-bank-name {
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .card-chip-el {
+            width: 40px;
+            height: 30px;
+            background: linear-gradient(135deg, #d4af37 0%, #fff 100%);
+            border-radius: 6px;
+        }
+
+        .card-num {
+            font-family: monospace;
+            font-size: 18px;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .card-bot-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            color: #fff;
+            font-size: 14px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
         .section {
-            padding: 50px 5%;
-            max-width: 1100px;
+            padding: 70px 5%;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-size: 28px;
+            font-size: 32px;
             color: var(--gold);
-            margin-bottom: 35px;
+            margin-bottom: 45px;
+            letter-spacing: 1px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
         }
 
         .card {
             background-color: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.25);
             border-radius: 14px;
-            padding: 24px;
+            padding: 30px;
             transition: transform 0.3s, border-color 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(241, 196, 15, 0.4);
+            transform: translateY(-5px);
+            border-color: var(--gold);
         }
 
         .card h3 {
-            color: #ffffff;
-            font-size: 18px;
-            margin-bottom: 10px;
+            color: var(--gold);
+            font-size: 20px;
+            margin-bottom: 12px;
         }
 
         .card p {
             color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 20px;
+            font-size: 15px;
         }
 
-        .card-footer {
+        /* Калькулятор */
+        .calculator-box {
+            background-color: var(--bg-darker);
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .calc-row {
+            margin-bottom: 24px;
+        }
+
+        .calc-row label {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding-top: 15px;
+            margin-bottom: 10px;
+            font-size: 16px;
         }
 
-        .card-price {
-            font-size: 13px;
+        .calc-row span {
             color: var(--gold);
             font-weight: bold;
         }
 
-        .btn-card {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 12px;
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--gold);
             cursor: pointer;
-            transition: all 0.3s;
         }
 
-        .btn-card:hover {
-            background: var(--gold);
-            color: var(--bg-darker);
+        .calc-result {
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .calc-result .total {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--gold);
+            margin-top: 5px;
         }
 
         /* Модальное окно */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(6, 20, 40, 0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -352,73 +342,68 @@
             background-color: var(--bg-card);
             border: 1px solid var(--gold);
             border-radius: 16px;
-            padding: 30px;
-            max-width: 400px;
+            padding: 40px;
+            max-width: 450px;
             width: 100%;
             text-align: center;
             position: relative;
         }
 
         .modal-content h3 {
-            color: #ffffff;
-            font-size: 20px;
-            margin-bottom: 10px;
+            color: var(--gold);
+            font-size: 24px;
+            margin-bottom: 15px;
         }
 
         .modal-content p {
             color: var(--text-muted);
-            margin-bottom: 20px;
-            font-size: 14px;
+            margin-bottom: 25px;
         }
 
         .modal-input {
             width: 100%;
-            padding: 10px 14px;
+            padding: 12px 16px;
             border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             background: var(--bg-darker);
             color: var(--text-main);
-            font-size: 15px;
-            margin-bottom: 15px;
+            font-size: 16px;
+            margin-bottom: 20px;
             outline: none;
-        }
-
-        .modal-input:focus {
-            border-color: var(--gold);
         }
 
         .close-modal {
             position: absolute;
-            top: 12px;
-            right: 16px;
-            font-size: 20px;
+            top: 15px; right: 20px;
+            font-size: 24px;
             color: var(--text-muted);
             cursor: pointer;
-            background: none;
-            border: none;
+            background: none; border: none;
         }
 
         footer {
             background-color: var(--bg-darker);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
             text-align: center;
-            padding: 30px 5%;
+            padding: 40px 5%;
             color: var(--text-muted);
-            font-size: 13px;
+            font-size: 14px;
         }
 
-        footer .legal-notice {
-            max-width: 800px;
-            margin: 0 auto 15px;
-            line-height: 1.5;
-            opacity: 0.7;
+        footer .disclaimer {
+            margin-top: 15px;
             font-size: 12px;
+            opacity: 0.7;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         @media (max-width: 768px) {
             nav { display: none; }
-            .hero h2 { font-size: 28px; }
-            .card-constructor { grid-template-columns: 1fr; padding: 20px; }
+            .hero-showcase { grid-template-columns: 1fr; text-align: center; }
+            .features-chips { justify-content: center; }
+            .hero-content h2 { font-size: 32px; }
         }
     </style>
 </head>
@@ -429,132 +414,120 @@
             <div class="brand-emblem">♔</div>
             <div class="brand-text">
                 <h1>ALEX BANK</h1>
-                <span>Digital Private Banking</span>
+                <span>EST. 1999</span>
             </div>
         </a>
         <nav>
-            <a href="#constructor">Конструктор карт</a>
+            <a href="#card-section">Премиум-карта</a>
             <a href="#services">Услуги</a>
-            <a href="#about">О банке и партнёры</a>
+            <a href="#calculator">Вклады</a>
+            <a href="#about">О банке</a>
         </nav>
-        <button class="btn-gold" onclick="openOrderModal(' digitales Счёт')">Открыть счёт</button>
+        <button class="btn-gold" onclick="openOrderModal('Дебетовая карта Alex Cat Supreme')">Оформить карту</button>
     </header>
 
-    <section class="hero">
-        <h2>Инновационный банкинг для вашего стиля жизни</h2>
-        <p>Выбирайте дизайн личной карты, получайте привилегии и управляйте активами в пару кликов.</p>
-    </section>
-
-    <!-- Интерактивный выбор дизайна карты (в стиле Т-Банка) -->
-    <section id="constructor" class="section" style="padding-top: 10px;">
-        <h2 class="section-title">Создайте свой стиль карты</h2>
-        <div class="card-constructor">
-            <!-- Превью карты -->
-            <div id="cardPreview" class="bank-card-preview card-style-royal">
-                <div class="card-top">
-                    <div class="card-chip"></div>
-                    <div class="card-logo">ALEX BANK</div>
-                </div>
-                <div class="card-number">4200 •••• •••• 8899</div>
-                <div class="card-bottom">
-                    <span>ALEXANDER C.</span>
-                    <span>12/28</span>
-                </div>
+    <!-- Главный экран с презентацией дебетовой карты с котярой -->
+    <section id="card-section" class="hero-showcase">
+        <div class="hero-content">
+            <h2>Дебетовая карта <span>Alex Cat Supreme</span></h2>
+            <p>Эксклюзивная премиальная карта с вашим уникальным дизайном. Мультивалютность, нулевая комиссия и VIP-привилегии в путешествиях.</p>
+            
+            <div class="features-chips">
+                <span class="chip">✈️ Бизнес-залы Samara Airlines (2 р. / 3 мес.)</span>
+                <span class="chip">💱 0% комиссия конвертации</span>
+                <span class="chip">🌍 Мультивалюта ($, €, £, ¥)</span>
+                <span class="chip">💎 Обслуживание $60 (Бесплатно при балансе от $80.000)</span>
             </div>
 
-            <!-- Управление стилями -->
-            <div class="constructor-options">
-                <h3>Выберите оформление пластика</h3>
-                <p>Дизайн мгновенно применится к вашему заказу. Все карты изготавливаются из премиальных материалов.</p>
-                
-                <div class="design-buttons">
-                    <button class="design-btn active" onclick="setCardDesign('royal', 'Alex Royal (Графит)')">Alex Royal</button>
-                    <button class="design-btn" onclick="setCardDesign('black', 'Alex Black (Премиум)')">Alex Black</button>
-                    <button class="design-btn" onclick="setCardDesign('gold', 'Alex Gold (Золото)')">Alex Gold</button>
-                    <button class="design-btn" onclick="setCardDesign('cyber', 'Alex Cyber (Неон)')">Alex Cyber</button>
-                </div>
+            <button class="btn-gold" onclick="openOrderModal('Дебетовая карта Alex Cat Supreme')">Заказать карту с котом</button>
+        </div>
 
-                <button class="btn-gold" style="width: 100%; text-align: center;" onclick="orderSelectedCard()">Заказать эту карту</button>
+        <div class="card-preview-container">
+            <!-- Премиальная карта с фоном из файла cat.png -->
+            <div class="premium-debit-card" id="catCard">
+                <div class="card-overlay"></div>
+                <div class="card-inner">
+                    <div class="card-top-row">
+                        <div class="card-bank-name">ALEX BANK</div>
+                        <div class="card-chip-el"></div>
+                    </div>
+                    <div class="card-num">5469 •••• •••• 3388</div>
+                    <div class="card-bot-row">
+                        <span>ALEXANDER C.</span>
+                        <span>09/29</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="services" class="section">
-        <h2 class="section-title">Преимущества обслуживания</h2>
+        <h2 class="section-title">Финансовые привилегии</h2>
         <div class="grid">
             <div class="card">
-                <div>
-                    <h3>Кэшбэк реальными рублями</h3>
-                    <p>До 15% в избранных категориях каждый месяц, без сложных условий и «подводных камней».</p>
-                </div>
-                <div class="card-footer">
-                    <span class="card-price">Без лимита баллов</span>
-                    <button class="btn-card" onclick="openOrderModal('Пакет Кэшбэк')">Подробнее</button>
-                </div>
+                <h3>Условия обслуживания</h3>
+                <p>Стандартная стоимость карты составляет $60 в месяц. Если на вашем счёте на начало расчетного периода хранится от $80 000, плата за обслуживание автоматически списываться не будет (0 $).</p>
             </div>
             <div class="card">
-                <div>
-                    <h3>Надёжные вклады</h3>
-                    <p>Доходность до 18% годовых с возможностью снятия и ежемесячной выплатой процентов на счёт.</p>
-                </div>
-                <div class="card-footer">
-                    <span class="card-price">До 18% годовых</span>
-                    <button class="btn-card" onclick="openOrderModal('Накопительный счёт')">Открыть</button>
-                </div>
+                <h3>Мультивалютный мир</h3>
+                <p>Храните средства и совершайте покупки в долларах ($), евро (€), фунтах стерлингов (£) и юанях (¥) с мгновенной конвертацией по межбанковскому курсу без скрытых комиссий.</p>
             </div>
             <div class="card">
-                <div>
-                    <h3>Премиальный сервис</h3>
-                    <p>Консьерж-поддержка 24/7, бесплатные проходы в бизнес-залы аэропортов по всему миру.</p>
-                </div>
-                <div class="card-footer">
-                    <span class="card-price">VIP статус</span>
-                    <button class="btn-card" onclick="openOrderModal('Alex VIP Консьерж')">Подключить</button>
-                </div>
+                <h3>Партнерство с Samara Airlines</h3>
+                <p>Эксклюзивное партнерство открывает вам бесплатный доступ в бизнес-залы аэропортов по всему миру при поддержке Samara Airlines дважды каждые 3 месяца.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="section">
+        <h2 class="section-title">Калькулятор доходности вкладов</h2>
+        <div class="calculator-box">
+            <div class="calc-row">
+                <label>Сумма вклада: <span id="amountVal">500 000 ₽</span></label>
+                <input type="range" id="amountRange" min="50000" max="5000000" step="50000" value="500000" oninput="calculateDeposit()">
+            </div>
+            <div class="calc-row">
+                <label>Срок (месяцев): <span id="monthsVal">12 мес.</span></label>
+                <input type="range" id="monthsRange" min="3" max="36" step="3" value="12" oninput="calculateDeposit()">
+            </div>
+            <div class="calc-result">
+                <p>Итоговая сумма к концу срока (под 18% годовых):</p>
+                <div class="total" id="totalResult">590 000 ₽</div>
             </div>
         </div>
     </section>
 
     <footer id="about">
-        <div class="legal-notice">
-            <p><strong>Официальное уведомление и правовая информация:</strong><br>
-            Данный веб-сайт создан исключительно в учебных, тренировочных и демонстрационных целях. <strong>Alex Bank</strong> не является реальной кредитной организацией, банком или финансовым учреждением, не осуществляет банковских операций и не принимает вклады. Все упоминания продуктов, тарифов и расчетные данные носят ознакомительный характер.</p>
-        </div>
-        <p><strong>Партнеры и спонсоры:</strong> Мы рады объявить, что Alex Bank официально заключил стратегическое партнерство с авиакомпанией <strong>Samara Airlines</strong>. Клиентов банка ждут эксклюзивные мили, кэшбэк на авиабилеты и специальные привилегии в полетах.</p>
+        <p><strong>Партнеры и спонсоры:</strong> Мы официально сотрудничаем с авиакомпанией <strong>Samara Airlines</strong>, предоставляя держателям премиальных карт бесплатные проходы в бизнес-залы.</p>
         <br>
         <p>© 1999–2026 ALEX BANK CORPORATION. Все права защищены.</p>
+        <p class="disclaimer"><strong>Правовая информация:</strong> Данный сайт является учебным, тренировочным и демонстрационным проектом. Alex Bank не является реальной кредитной организацией, банком или финансовым учреждением и не оказывает реальных финансовых услуг.</p>
     </footer>
 
-    <!-- Модальное окно -->
+    <!-- Модальное окно заявки -->
     <div class="modal" id="orderModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeOrderModal()">&times;</button>
-            <h3>Оформление заявки</h3>
-            <p id="modalProductTitle">Вы выбрали продукт</p>
+            <h3>Оформление карты</h3>
+            <p id="modalProductTitle">Заявка на продукт</p>
             <input type="text" id="clientName" class="modal-input" placeholder="Ваше имя">
-            <input type="tel" id="clientPhone" class="modal-input" placeholder="Телефон (+7 ...)">
-            <button class="btn-gold" style="width: 100%;" onclick="submitOrder()">Подтвердить заявку</button>
+            <input type="tel" id="clientPhone" class="modal-input" placeholder="Номер телефона (+7 ...)">
+            <button class="btn-gold" style="width: 100%;" onclick="submitOrder()">Отправить заявку</button>
         </div>
     </div>
 
     <script>
-        let currentChosenCard = 'Alex Royal (Графит)';
+        function calculateDeposit() {
+            const amount = parseInt(document.getElementById('amountRange').value);
+            const months = parseInt(document.getElementById('monthsRange').value);
+            const rate = 0.18;
 
-        function setCardDesign(styleName, titleName) {
-            currentChosenCard = titleName;
-            
-            // Сменяем класс превью карты
-            const preview = document.getElementById('cardPreview');
-            preview.className = 'bank-card-preview card-style-' + styleName;
+            const profit = amount * rate * (months / 12);
+            const total = Math.round(amount + profit);
 
-            // Переключаем активные кнопки в конструкторе
-            const buttons = document.querySelectorAll('.design-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-
-        function orderSelectedCard() {
-            openOrderModal(currentChosenCard);
+            document.getElementById('amountVal').innerText = amount.toLocaleString('ru-RU') + ' ₽';
+            document.getElementById('monthsVal').innerText = months + ' мес.';
+            document.getElementById('totalResult').innerText = total.toLocaleString('ru-RU') + ' ₽';
         }
 
         function openOrderModal(productName) {
@@ -572,7 +545,7 @@
                 alert('Пожалуйста, введите ваше имя.');
                 return;
             }
-            alert('Спасибо, ' + name + '! Ваша демонстрационная заявка успешно принята. Персональный менеджер свяжется с вами.');
+            alert('Спасибо, ' + name + '! Ваша заявка успешно принята. Персональный менеджер свяжется с вами.');
             closeOrderModal();
             document.getElementById('clientName').value = '';
             document.getElementById('clientPhone').value = '';
