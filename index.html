@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALEX BANK — Премиальный банкинг с 1999 года</title>
+    <style>
+        :root {
+            --bg-dark: #0a1f3c;
+            --bg-darker: #061428;
+            --bg-card: #102a4e;
+            --gold: #d4af37;
+            --gold-hover: #e5c354;
+            --text-main: #f4f6f9;
+            --text-muted: #9eb3cc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--bg-darker);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .brand-emblem {
+            width: 44px;
+            height: 44px;
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 20px;
+            background: rgba(212, 175, 55, 0.08);
+        }
+
+        .brand-text h1 {
+            color: var(--gold);
+            font-size: 22px;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .brand-text span {
+            color: var(--text-muted);
+            font-size: 11px;
+            letter-spacing: 3px;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--bg-darker);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-hover);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: 80px 5%;
+            text-align: center;
+            background: radial-gradient(circle at top, #133361 0%, var(--bg-dark) 70%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 620px;
+            margin: 0 auto 36px;
+        }
+
+        .section {
+            padding: 70px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: var(--gold);
+            margin-bottom: 45px;
+            letter-spacing: 1px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 14px;
+            padding: 30px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .card h3 {
+            color: var(--gold);
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .calculator-box {
+            background-color: var(--bg-darker);
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .calc-row {
+            margin-bottom: 24px;
+        }
+
+        .calc-row label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .calc-row span {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--gold);
+            cursor: pointer;
+        }
+
+        .calc-result {
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .calc-result p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .calc-result .total {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--gold);
+            margin-top: 5px;
+        }
+
+        footer {
+            background-color: var(--bg-darker);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+            padding: 30px 5%;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer .disclaimer {
+            margin-top: 10px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .hero h2 { font-size: 30px; }
+            .calculator-box { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="brand">
+            <div class="brand-emblem">♔</div>
+            <div class="brand-text">
+                <h1>ALEX BANK</h1>
+                <span>EST. 1999</span>
+            </div>
+        </a>
+        <nav>
+            <a href="#services">Услуги</a>
+            <a href="#calculator">Вклады</a>
+            <a href="#about">О банке</a>
+        </nav>
+        <button class="btn-gold" onclick="orderCard()">Открыть счёт</button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-badge">Надёжность и традиции с 1999 года</div>
+        <h2>Королевский стандарт управления вашими финансами</h2>
+        <p>Премиальное банковское обслуживание, мультивалютные счета и персональные привилегии для тех, кто ценит безопасность и статус.</p>
+        <button class="btn-gold" onclick="orderCard()">Оформить карту Alex Royal</button>
+    </section>
+
+    <section id="services" class="section">
+        <h2 class="section-title">Финансовые решения</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Карта Alex Royal</h3>
+                <p>Металлическая карта с кешбэком до 15% у партнёров, бесплатным доступом в бизнес-залы аэропортов и круглосуточным консьерж-сервисом.</p>
+            </div>
+            <div class="card">
+                <h3>Надёжные вклады</h3>
+                <p>Фиксированная доходность до 18% годовых с ежемесячной капитализацией процентов и защитой капитала по стандартам Alex Bank.</p>
+            </div>
+            <div class="card">
+                <h3>Мультивалютные счета</h3>
+                <p>Мгновенная конвертация валют по биржевому курсу без скрытых комиссий и быстрые переводы в любую точку мира.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="section">
+        <h2 class="section-title">Калькулятор доходности</h2>
+        <div class="calculator-box">
+            <div class="calc-row">
+                <label>Сумма вклада: <span id="amountVal">500 000 ₽</span></label>
+                <input type="range" id="amountRange" min="50000" max="5000000" step="50000" value="500000" oninput="calculateDeposit()">
+            </div>
+            <div class="calc-row">
+                <label>Срок (месяцев): <span id="monthsVal">12 мес.</span></label>
+                <input type="range" id="monthsRange" min="3" max="36" step="3" value="12" oninput="calculateDeposit()">
+            </div>
+            <div class="calc-result">
+                <p>Итоговая сумма к концу срока (под 18% годовых):</p>
+                <div class="total" id="totalResult">590 000 ₽</div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="about">
+        <p>© 1999–2026 ALEX BANK CORPORATION. Все права защищены.</p>
+        <p class="disclaimer">Данный сайт является учебным и демонстрационным проектом. Alex Bank не является реальной кредитной организацией и не оказывает финансовые услуги.</p>
+    </footer>
+
+    <script>
+        function calculateDeposit() {
+            const amount = parseInt(document.getElementById('amountRange').value);
+            const months = parseInt(document.getElementById('monthsRange'].value);
+            const rate = 0.18;
+
+            const profit = amount * rate * (months / 12);
+            const total = Math.round(amount + profit);
+
+            document.getElementById('amountVal').innerText = amount.toLocaleString('ru-RU') + ' ₽';
+            document.getElementById('monthsVal').innerText = months + ' мес.';
+            document.getElementById('totalResult').innerText = total.toLocaleString('ru-RU') + ' ₽';
+        }
+
+        function orderCard() {
+            const name = prompt('Введите ваше имя для заявки на карту Alex Royal:');
+            if (name && name.trim() !== '') {
+                alert('Спасибо, ' + name + '! Ваша заявка в Alex Bank принята. Персональный менеджер скоро свяжется с вами.');
+            }
+        }
+    </script>
+</body>
+</html>
